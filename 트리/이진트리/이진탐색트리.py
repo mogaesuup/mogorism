@@ -23,7 +23,4 @@ class BinarySearchTree(object):
                 node.right = self._insert_value(node.right, data)
         return node
 
-
-
-
 array = [40, 4, 43, 45, 14, 55, 48, 13, 15, 49, 47]

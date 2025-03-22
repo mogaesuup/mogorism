@@ -10,7 +10,6 @@ for _ in range(X):
     a, b, c = map(int, input().split())
     graph[a].append((c, b))
 
-
 def SPFA():
     dp = [INF] * (Y + 1)
     cycle = [0] * (Y + 1)

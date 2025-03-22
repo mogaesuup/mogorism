@@ -10,7 +10,6 @@ for _ in range(N-1):
     tree[a].append(b)
     tree[b].append(a)
 
-
 def dfs(prev, u):
     DP[u][0] = 0
     DP[u][1] = 1
@@ -19,7 +18,6 @@ def dfs(prev, u):
             dfs(u, v)
             DP[u][0] += DP[v][1]
             DP[u][1] += min(DP[v][0], DP[v][1])
-
 
 dfs(0, 1)
 print(min(DP[1][0], DP[1][1]))

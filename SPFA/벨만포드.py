@@ -1,7 +1,6 @@
 import sys
 INF = sys.maxsize
 
-
 for _ in range(int(input())):
     n, m, w = map(int, input().split())
 
@@ -15,7 +14,7 @@ for _ in range(int(input())):
         a, b, c = map(int, input().split())
         graph[a].append([b, -c])
 
-    dist = [INF] * (n+1)
+    dist = [INF] * (n + 1)
     dist[1] = 0
     result = "NO"
     for it in range(n):

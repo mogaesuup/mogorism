@@ -2,54 +2,44 @@ import sys
 sys.stdin = open("2150.txt", "r")
 V, E = map(int, input().split())
 visited = [False] * (V + 1)
-graph = [[] for i in range(V + 1)]  # 빈 그래프 생성
-
-# 주어진 간선에 따라 그래프 채워넣기
+graph = [[] for i in range(V + 1)]  
 for _ in range(E):
     a, b = map(int, input().split())
     graph[a].append(b)
-# dfs 재귀 함수
 
-
-def dfs(v, visited, stack):
+def dfs(v, visited, S):
     visited[v] = 1
     for w in graph[v]:
         if visited[w] == 0:
-            stack.append(w)
-            dfs(w, visited, stack)
-    stack.append(v)  # 탐색을 마친 노드 stack에 저장.
+            S.append(w)
+            dfs(w, visited, S)
+    S.append(v) 
 
-# 역방향 그래프 생성
-
-
-def reverseDfs(v, visited, stack):
+def reverseDfs(v, visited, S):
     visited[v] = 1
-    stack.append(v)
+    S.append(v)
     for w in reverse_graph[v]:
         if visited[w] == 0:
-            reverseDfs(w, visited, stack)
+            reverseDfs(w, visited, S)
 
 
 # 코사라주 알고리즘
-stack = []
+S = []
 
 for i in range(1, V+1):
     if visited[i] == 0:
-        dfs(i, visited, stack)  # stack에 탐색을 마친 정점 순으로 저장
-
+        dfs(i, visited, S) 
 reverse_graph = [[] for i in range(V+1)]
 for i in range(1, V+1):
     for j in graph[i]:
         reverse_graph[j].append(i)
 
-visited = [0] * (V+1)  # visited 초기화
-results = []  # ssc를 담을 result 생성
-
-while stack:
+visited = [0] * (V + 1)
+results = []
+while S:
     scc = []
-    node = stack.pop()  # stack에서 scc의 source 추출
+    node = S.pop() 
     if visited[node] == 0:
-        # dfs를 진행하면서, scc의 source부터 탐색을 진행한다. 탐색한 정점은 scc에 저장
         reverseDfs(node, visited, scc)
-        results.append(sorted(scc) + [-1])  # 재귀가 끝난 정점이 ssc의 sink
+        results.append(sorted(scc) + [-1]) 
 print(results)
