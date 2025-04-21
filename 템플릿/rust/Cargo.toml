@@ -1,0 +1,10 @@
+[package]
+name = "algorithm_templates"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "line_intersection"
+path = "geometry/line_intersection.rs" 
